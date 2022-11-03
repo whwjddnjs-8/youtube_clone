@@ -51,15 +51,19 @@ header {
     }
 
     .search-area {
+        width: 50%;
         display: flex;
         justify-content: center;
         align-items: center;
-        // gap: 20px;
 
         input[type=text] {
             width: 538px;
             border: 1px solid #ddd;
             padding: 9px;
+            padding-left: 35px;
+            background: url(../images/icon/search.svg) no-repeat left 10px center;
+            background-size: 19px;
+            outline: none;
         }
 
         button {
@@ -98,7 +102,15 @@ header {
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 25px;
+        gap: 30px;
+
+        img {
+            width: 19px;
+        }
+
+        a:nth-child(2) img {
+            width: 17px;
+        }
 
         i {
             font-size: 23px;
@@ -110,11 +122,22 @@ header {
             border-radius: 50%;
             overflow: hidden;
 
-            img {
+            a {
                 width: inherit;
                 height: inherit;
+
+                img {
+                    width: inherit;
+                    height: inherit;
+                }
             }
         }
     }
 
+}
+
+@media (max-width : 768px) {
+    .search-area {
+        display: none !important;
+    }
 }

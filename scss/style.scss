@@ -22,7 +22,6 @@ body {
     padding: 0;
 }
 
-
 /* Structure */
 .body-container {
     margin-top: 56px;
@@ -31,22 +30,19 @@ body {
 
     .lnb-area {
         flex: 1;
-        width: 242px;
-        z-index: 201;
+
     }
 
     .container {
-        flex: 1;    
+        flex: 1;
         margin-left: 242px;
-        // width: 100%;
 
         .recommend-btn-area {
-            width: 100%;
+            width: calc(100% - 242px);
             height: 58px;
         }
 
         .content-area {
-            max-width: 1680px;
             margin: 58px auto;
         }
     }
@@ -54,30 +50,31 @@ body {
 
 /* Recommend Btn Area */
 .recommend-btn-area {
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
     position: fixed;
-    top: 56px;
-    left: 0;
     background-color: #fff;
     z-index: 100;
 
     .btn-area {
         padding: 8px 0;
+        white-space: nowrap;
+        overflow: hidden;
 
         a {
-            border: 1px solid #ddd;
-            padding: 4px 12px;
-            border-radius: 20px;
+            // border: 1px solid #ddd;
+            padding: 5px 12px;
+            border-radius: 10px;
             background-color: #eee;
             margin-right: 5px;
             color: #444;
 
             span {
-                font-size: 15px;
+                font-size: 14px;
             }
 
             &.active {
@@ -91,18 +88,21 @@ body {
 
 /* Left Navbar */
 .lnb-area {
+    width: 242px;
+    z-index: 201;
     background-color: #fff;
     position: fixed;
     left: 0;
     top: 56px;
     height: 100%;
+    overflow-y: scroll;
 
     &:hover {
         overflow-y: scroll;
     }
 
     &::-webkit-scrollbar {
-        width: 10px;
+        width: 5px;
     }
 
     &::-webkit-scrollbar-thumb {
@@ -133,41 +133,161 @@ body {
                 list-style: none;
 
                 a {
+                    img {
+                        width: 18px;
+                        height: 18px;
+                        margin-right: 25px;
+                        vertical-align: middle;
+
+                        &:nth-child(1) {
+                            width: 20px;
+                            height: 20px;
+                        }
+                    }
+
                     li {
                         padding: 9px 25px;
-                        font-size: 15px;
+                        // margin: 0 8px;
+                        font-size: 14px;
+                        position: relative;
 
                         &:hover {
-                            background-color: #ddd;
+                            background-color: rgb(236, 236, 236);
+                            border-radius: 15px;
+                        }
+
+                        &.new:after {
+                            content: '';
+                            position: absolute;
+                            right: 10px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            width: 5px;
+                            height: 5px;
+                            border-radius: 50%;
+                            background-color: royalblue;
                         }
                     }
 
                     &.active li {
-                        background-color: #ddd;
+                        background-color: rgb(236, 236, 236);
+                        border-radius: 15px;
                     }
                 }
-
             }
+        }
+    }
+
+    .small-lnb {
+        display: none;
+        text-align: center;
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+
+            li {
+                margin: 35px 0;
+
+                img {
+                    width: 16px;
+                    display: block;
+                    margin: auto;
+                }
+
+                a {
+                    font-size: 10px;
+                }
+            }
+        }
+
+
+    }
+}
+
+/* 반응형 small lnb */
+@media (max-width : 1400px) {
+    .container {
+        margin-left: 70px !important;
+    }
+
+    .recommend-btn-area {
+        width: calc(100% - 70px) !important;
+    }
+
+    .lnb-area {
+        width: 70px;
+
+        &:hover {
+            overflow-y: hidden;
+        }
+    }
+
+    .lnb {
+        display: none;
+    }
+
+    .small-lnb {
+        display: block !important;
+    }
+
+    .content-area {
+        padding: 10px !important;
+    }
+}
+
+@media (max-width : 1150px) {
+    .video-area {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+}
+
+@media (max-width : 700px) {
+    .video-area {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .lnb-area {
+        display: none;
+    }
+
+    .container {
+        margin-left: 0px !important;
+    }
+
+    .recommend-btn-area {
+        width: 100% !important;
+
+        .btn-area {
+            padding: 10px;
         }
     }
 }
 
+@media (max-width : 480px) {
+    .video-area {
+        grid-template-columns: repeat(1, 1fr) !important;
+    }
+}
+
 .content-area {
-    max-width: 100%;
     padding: 20px 95px;
 
     .video-area {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 10px;
+        gap: 15px;
         row-gap: 45px;
         position: relative;
 
         .content {
+            width: 100%;
             cursor: pointer;
 
             img {
-                width: 360px;
+                width: inherit;
+                border-radius: 15px;
             }
 
             .desc-area {
@@ -237,25 +357,55 @@ body {
         }
 
         h3 {
-            font-size: 23px;
+            font-size: 22px;
             font-weight: normal;
+            position: relative;
+
+            i {
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+                cursor: pointer;
+            }
+        }
+
+        .not-showing {
+            display: none;
+
+            .cancel-btn {
+                margin-left: 8px;
+                color: rgb(42, 42, 255);
+                cursor: pointer;
+                padding: 10px;
+
+                &:hover {
+                    background-color: rgb(195, 228, 255);
+                    border-radius: 25px;
+                }
+            }
         }
 
         .shorts {
             padding: 15px 0;
+            width: 100%;
             display: flex;
-            // gap: 10px;
+            justify-content: center;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 10px;
 
             .item {
-                flex: 1;
+                width: 100%;
+                max-width: 150px;
 
                 img {
-                    width: 150px;
+                    width: inherit;
+                    border-radius: 15px;
                 }
 
                 .title-area {
                     margin-top: 6px;
-                    width: 150px;
                     display: inline-block;
                     width: inherit;
                     white-space: nowrap;
